@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+            var ws = new WebSocket("ws://localhost:8000/ws");
+            ws.onmessage = function(event) {
+                var messages = document.getElementById('messages')
+                var message = document.createElement('li')
+                var content = document.createTextNode(event.data)
+                message.appendChild(content)
+                messages.appendChild(message)
+            };
+            function getRandomInt(max) {
+              return Math.floor(Math.random() * max);
+            }
+            function sendMessage(event) {
+                var post_title = document.getElementById("postTitle")
+                var post_text = document.getElementById("postText")
+                var post_author = 1
+                var data = {
+                    "id": getRandomInt(10000),
+                    "title": post_title,
+                    "text": post_text,
+                    "author_id": post_author
+                }
+                console.log(data)
+                ws.send()
+                event.preventDefault()
+            }
+        </script>
+</head>
+<body>
+
+</body>
+</html>
